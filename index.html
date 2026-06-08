@@ -3,120 +3,517 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AC EVO Telemetry Support</title>
-    <meta name="description" content="Support page for AC EVO Telemetry, a Stream Deck plugin for Assetto Corsa EVO.">
+    <title>EVO Telemetry Plugin Support</title>
+    <meta name="description" content="Support, setup, privacy, and troubleshooting for EVO Telemetry Plugin, an unofficial Stream Deck plugin for Assetto Corsa EVO.">
     <style>
       :root {
         color-scheme: dark;
-        --bg: #111318;
-        --panel: #181b22;
+        --bg: #07090d;
+        --band: #0d1219;
+        --panel: #111720;
+        --panel-2: #151d28;
+        --line: #2b3442;
         --text: #f8fafc;
-        --muted: #a7b0bf;
-        --line: #2a2f3a;
-        --accent: #38bdf8;
-        --good: #22c55e;
+        --muted: #aab4c2;
+        --soft: #7f8a9a;
+        --cyan: #38bdf8;
+        --green: #22c55e;
+        --yellow: #facc15;
+        --orange: #fb923c;
+        --red: #ef4444;
       }
+
       * {
         box-sizing: border-box;
       }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         margin: 0;
-        background: var(--bg);
+        background: linear-gradient(180deg, #0a0f16 0%, var(--bg) 44rem);
         color: var(--text);
         font-family: Arial, sans-serif;
         line-height: 1.55;
       }
-      main {
-        width: min(920px, calc(100% - 32px));
-        margin: 0 auto;
-        padding: 56px 0;
-      }
-      header {
-        border-bottom: 1px solid var(--line);
-        margin-bottom: 28px;
-        padding-bottom: 28px;
-      }
-      h1 {
-        font-size: clamp(34px, 7vw, 56px);
-        line-height: 1;
-        margin: 0 0 12px;
-      }
-      h2 {
-        color: var(--accent);
-        font-size: 22px;
-        margin: 32px 0 10px;
-      }
-      p, li {
-        color: var(--muted);
-        font-size: 16px;
-      }
+
       a {
-        color: var(--accent);
+        color: var(--cyan);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
       }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 14px;
-      }
-      .card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 18px;
-      }
-      .tag {
-        color: var(--good);
-        font-weight: 700;
-        letter-spacing: 0;
-        text-transform: uppercase;
-      }
+
       code {
-        background: #0f1218;
+        background: #05070a;
         border: 1px solid var(--line);
         border-radius: 5px;
         color: var(--text);
         padding: 2px 5px;
       }
+
+      .wrap {
+        width: min(1160px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        border-bottom: 1px solid rgba(43, 52, 66, .9);
+        background: rgba(7, 9, 13, .88);
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar .wrap {
+        align-items: center;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        min-height: 62px;
+      }
+
+      .brand {
+        align-items: center;
+        color: var(--text);
+        display: flex;
+        gap: 12px;
+        min-width: 0;
+        text-decoration: none;
+      }
+
+      .brand img {
+        height: 36px;
+        width: 36px;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 15px;
+        line-height: 1.1;
+      }
+
+      .brand span {
+        color: var(--soft);
+        display: block;
+        font-size: 12px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      header {
+        padding: 72px 0 48px;
+      }
+
+      .hero {
+        align-items: center;
+        display: grid;
+        gap: 34px;
+        grid-template-columns: minmax(0, .85fr) minmax(420px, 1.15fr);
+      }
+
+      .eyebrow {
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 900;
+        margin: 0 0 14px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 76px);
+        line-height: .95;
+        margin: 0 0 18px;
+        max-width: 760px;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 22px);
+        margin: 0;
+        max-width: 660px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--text);
+        display: inline-flex;
+        font-size: 14px;
+        font-weight: 900;
+        min-height: 42px;
+        padding: 0 16px;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        background: var(--cyan);
+        border-color: var(--cyan);
+        color: #041018;
+      }
+
+      .preview {
+        margin: 0;
+      }
+
+      .preview img {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, .42);
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+
+      .preview figcaption {
+        color: var(--soft);
+        font-size: 13px;
+        margin-top: 10px;
+      }
+
+      .status-row {
+        border-bottom: 1px solid var(--line);
+        border-top: 1px solid var(--line);
+        background: rgba(13, 18, 25, .82);
+      }
+
+      .status-grid {
+        display: grid;
+        gap: 1px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .status-item {
+        background: rgba(17, 23, 32, .82);
+        padding: 18px;
+      }
+
+      .status-item b {
+        color: var(--text);
+        display: block;
+        font-size: 15px;
+      }
+
+      .status-item span {
+        color: var(--muted);
+        display: block;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+
+      main {
+        padding: 54px 0 76px;
+      }
+
+      section {
+        margin-top: 54px;
+      }
+
+      section:first-child {
+        margin-top: 0;
+      }
+
+      .section-head {
+        align-items: end;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        margin-bottom: 18px;
+        padding-bottom: 16px;
+      }
+
+      h2 {
+        font-size: clamp(26px, 4vw, 38px);
+        line-height: 1;
+        margin: 0;
+      }
+
+      .section-head p {
+        color: var(--muted);
+        margin: 0;
+        max-width: 560px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .tile {
+        background: linear-gradient(180deg, var(--panel-2), var(--panel));
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+      }
+
+      .tile h3 {
+        font-size: 18px;
+        margin: 0 0 8px;
+      }
+
+      .tile p,
+      .tile li {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .tile p {
+        margin: 0;
+      }
+
+      ul,
+      ol {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .wide {
+        grid-column: span 2;
+      }
+
+      .notice {
+        border-left: 4px solid var(--yellow);
+      }
+
+      .privacy {
+        border-left: 4px solid var(--green);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--soft);
+        font-size: 13px;
+        padding: 24px 0 42px;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .grid,
+        .status-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .wide {
+          grid-column: span 1;
+        }
+
+        .topbar {
+          position: static;
+        }
+
+        .topbar .wrap,
+        .section-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        nav {
+          justify-content: flex-start;
+        }
+
+        header {
+          padding-top: 42px;
+        }
+      }
     </style>
   </head>
   <body>
-    <main>
-      <header>
-        <div class="tag">Stream Deck Plugin</div>
-        <h1>AC EVO Telemetry Support</h1>
-        <p>Live Assetto Corsa EVO telemetry and controls for Stream Deck on Windows.</p>
-      </header>
+    <div class="topbar">
+      <div class="wrap">
+        <a class="brand" href="#top" aria-label="EVO Telemetry Plugin Support home">
+          <img src="assets/app-icon.png" alt="">
+          <span>
+            <strong>EVO Telemetry Plugin</strong>
+            <span>Unofficial Stream Deck support</span>
+          </span>
+        </a>
+        <nav aria-label="Support navigation">
+          <a href="#setup">Setup</a>
+          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#controls">Controls</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#issues">Issues</a>
+        </nav>
+      </div>
+    </div>
 
-      <section class="grid" aria-label="Support topics">
-        <div class="card">
-          <h2>Requirements</h2>
-          <p>Windows 10 or newer, Stream Deck 6.5 or newer, and Assetto Corsa EVO running with native shared memory available.</p>
+    <header id="top">
+      <div class="wrap hero">
+        <div>
+          <p class="eyebrow">Community plugin for sim racing telemetry</p>
+          <h1>EVO Telemetry Plugin Support</h1>
+          <p class="lead">Support, setup, and troubleshooting for an unofficial Stream Deck plugin that reads Assetto Corsa EVO shared-memory telemetry locally on Windows.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">Open an Issue</a>
+            <a class="button" href="#privacy">Privacy Details</a>
+            <a class="button" href="#setup">Setup Checklist</a>
+          </div>
         </div>
-        <div class="card">
-          <h2>Controls</h2>
-          <p>Control buttons send keyboard input to EVO. Set the same keys in EVO and in each Stream Deck action's property inspector.</p>
+        <figure class="preview">
+          <img src="assets/support-preview.png" alt="Preview of Stream Deck keys showing lap timing, speed, gear, tire temperatures, brakes, and control buttons.">
+          <figcaption>Preview artwork generated from the plugin's own Stream Deck key renderer.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <div class="status-row">
+      <div class="wrap status-grid" aria-label="Plugin summary">
+        <div class="status-item">
+          <b>Local telemetry</b>
+          <span>Reads EVO shared memory on the same PC.</span>
         </div>
-        <div class="card">
-          <h2>Telemetry</h2>
-          <p>The plugin reads EVO shared memory directly. No Fanatec software, Mosquitto, MQTT, or Python bridge is required.</p>
+        <div class="status-item">
+          <b>Dynamic keys</b>
+          <span>Live state, stale/no-data states, and thermal colors.</span>
+        </div>
+        <div class="status-item">
+          <b>Unit options</b>
+          <span>Fahrenheit/Celsius and MPH/KMH where supported.</span>
+        </div>
+        <div class="status-item">
+          <b>No external bridge</b>
+          <span>No Fanatec, MQTT, Mosquitto, or Python bridge required.</span>
+        </div>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section id="setup">
+        <div class="section-head">
+          <h2>Setup Checklist</h2>
+          <p>Most issues come from the sim not being in a live session yet, Stream Deck not seeing the native host, or control keys not matching the game bindings.</p>
+        </div>
+        <div class="grid">
+          <div class="tile">
+            <h3>Requirements</h3>
+            <p>Windows 10 or newer, Stream Deck 6.5 or newer, and Assetto Corsa EVO running with native shared memory available.</p>
+          </div>
+          <div class="tile">
+            <h3>Telemetry Keys</h3>
+            <p>Drag direct actions such as Lap Time, Speed, Gear, Tires, Brake Temp, or Lights from the Stream Deck action list.</p>
+          </div>
+          <div class="tile">
+            <h3>Control Buttons</h3>
+            <p>Set the same keyboard binding in Assetto Corsa EVO and in the action's Stream Deck property inspector.</p>
+          </div>
         </div>
       </section>
 
-      <h2>Troubleshooting</h2>
-      <ul>
-        <li>If a key shows <code>NO DATA</code>, start EVO and load into a session.</li>
-        <li>If a key shows <code>STALE</code>, restart Stream Deck after EVO is running.</li>
-        <li>If a control button does not work, verify the key binding in EVO and in the Stream Deck property inspector.</li>
-        <li>Some EVO fields are not exposed or are not populated by the game yet. Unsupported flags and dead fields are intentionally omitted from the main action palette.</li>
-      </ul>
+      <section id="troubleshooting">
+        <div class="section-head">
+          <h2>Troubleshooting</h2>
+          <p>The plugin is intentionally native-data-first. If EVO does not expose a value reliably, the plugin should show no data rather than inventing a state.</p>
+        </div>
+        <div class="grid">
+          <div class="tile wide">
+            <h3>Quick Checks</h3>
+            <ol>
+              <li>Start Assetto Corsa EVO and load into a driving session.</li>
+              <li>Restart Stream Deck if keys show <code>STALE</code> after the sim is already running.</li>
+              <li>Open <code>http://127.0.0.1:8765/health</code> on the same PC and confirm the local host reports healthy.</li>
+              <li>Open <code>http://127.0.0.1:8765/telemetry</code> and confirm values change while driving.</li>
+            </ol>
+          </div>
+          <div class="tile notice">
+            <h3>Known Limits</h3>
+            <p>Race-control states that are not reliably exposed by native EVO telemetry are left out of the initial action palette.</p>
+          </div>
+        </div>
+      </section>
 
-      <h2 id="privacy">Privacy</h2>
-      <p>The plugin reads AC EVO telemetry locally from shared memory and exposes local diagnostics on <code>127.0.0.1</code>. It does not send driving telemetry, settings, or personal data to external servers.</p>
+      <section id="controls">
+        <div class="section-head">
+          <h2>Controls</h2>
+          <p>Buttons send keyboard input, then render the live state EVO reports back through telemetry.</p>
+        </div>
+        <div class="grid">
+          <div class="tile">
+            <h3>Indicators</h3>
+            <p>Left and right indicator buttons blink only when their live telemetry state is active.</p>
+          </div>
+          <div class="tile">
+            <h3>Pit Limiter</h3>
+            <p>The limiter button pulses while enabled, based on the native pit-limiter value.</p>
+          </div>
+          <div class="tile">
+            <h3>Starter</h3>
+            <p>Hold the starter action to hold its key down. Tap/press behavior follows your in-game binding.</p>
+          </div>
+        </div>
+      </section>
 
-      <h2>Reporting Issues</h2>
-      <p>Open an issue on the project repository with your Stream Deck version, AC EVO version, the car/session you tested, and what the local diagnostics endpoint reports at <code>http://127.0.0.1:8765/health</code>.</p>
-      <p><a href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">GitHub Issues</a></p>
-      <p>AC EVO Telemetry is an unofficial community plugin and is not affiliated with or endorsed by Kunos Simulazioni, 505 Games, Corsair, or Elgato.</p>
+      <section id="privacy">
+        <div class="section-head">
+          <h2>Privacy</h2>
+          <p>The plugin is built for local telemetry and local diagnostics.</p>
+        </div>
+        <div class="grid">
+          <div class="tile privacy wide">
+            <h3>Local-Only Data</h3>
+            <p>The plugin reads Assetto Corsa EVO telemetry locally from shared memory and exposes diagnostics on <code>127.0.0.1</code>. It does not send driving telemetry, settings, or personal data to external servers.</p>
+          </div>
+          <div class="tile">
+            <h3>Support Data</h3>
+            <p>If you open an issue, include only what you choose to share: Stream Deck version, EVO version, session/car, and local diagnostic output.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="issues">
+        <div class="section-head">
+          <h2>Reporting Issues</h2>
+          <p>A good report makes bugs much easier to reproduce.</p>
+        </div>
+        <div class="grid">
+          <div class="tile wide">
+            <h3>Include This</h3>
+            <ul>
+              <li>Stream Deck version and Windows version.</li>
+              <li>Assetto Corsa EVO version, car, track, and session type.</li>
+              <li>Which Stream Deck action is wrong and what the game showed at the same time.</li>
+              <li>Output from <code>http://127.0.0.1:8765/health</code> and, if useful, the changing field from <code>/telemetry</code>.</li>
+            </ul>
+          </div>
+          <div class="tile">
+            <h3>Issue Tracker</h3>
+            <p><a href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">Open or review GitHub Issues</a></p>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer>
+      <div class="wrap">
+        EVO Telemetry Plugin is an unofficial community plugin and is not affiliated with or endorsed by Kunos Simulazioni, 505 Games, Corsair, or Elgato. Assetto Corsa EVO and Stream Deck are referenced only to describe compatibility.
+      </div>
+    </footer>
   </body>
 </html>
