@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AC EVO Telemetry Support</title>
+    <meta name="description" content="Support page for AC EVO Telemetry, a Stream Deck plugin for Assetto Corsa EVO.">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #111318;
+        --panel: #181b22;
+        --text: #f8fafc;
+        --muted: #a7b0bf;
+        --line: #2a2f3a;
+        --accent: #38bdf8;
+        --good: #22c55e;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, sans-serif;
+        line-height: 1.55;
+      }
+      main {
+        width: min(920px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 56px 0;
+      }
+      header {
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 28px;
+        padding-bottom: 28px;
+      }
+      h1 {
+        font-size: clamp(34px, 7vw, 56px);
+        line-height: 1;
+        margin: 0 0 12px;
+      }
+      h2 {
+        color: var(--accent);
+        font-size: 22px;
+        margin: 32px 0 10px;
+      }
+      p, li {
+        color: var(--muted);
+        font-size: 16px;
+      }
+      a {
+        color: var(--accent);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+      }
+      .tag {
+        color: var(--good);
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+      code {
+        background: #0f1218;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        color: var(--text);
+        padding: 2px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="tag">Stream Deck Plugin</div>
+        <h1>AC EVO Telemetry Support</h1>
+        <p>Live Assetto Corsa EVO telemetry and controls for Stream Deck on Windows.</p>
+      </header>
+
+      <section class="grid" aria-label="Support topics">
+        <div class="card">
+          <h2>Requirements</h2>
+          <p>Windows 10 or newer, Stream Deck 6.5 or newer, and Assetto Corsa EVO running with native shared memory available.</p>
+        </div>
+        <div class="card">
+          <h2>Controls</h2>
+          <p>Control buttons send keyboard input to EVO. Set the same keys in EVO and in each Stream Deck action's property inspector.</p>
+        </div>
+        <div class="card">
+          <h2>Telemetry</h2>
+          <p>The plugin reads EVO shared memory directly. No Fanatec software, Mosquitto, MQTT, or Python bridge is required.</p>
+        </div>
+      </section>
+
+      <h2>Troubleshooting</h2>
+      <ul>
+        <li>If a key shows <code>NO DATA</code>, start EVO and load into a session.</li>
+        <li>If a key shows <code>STALE</code>, restart Stream Deck after EVO is running.</li>
+        <li>If a control button does not work, verify the key binding in EVO and in the Stream Deck property inspector.</li>
+        <li>Some EVO fields are not exposed or are not populated by the game yet. Unsupported flags and dead fields are intentionally omitted from the main action palette.</li>
+      </ul>
+
+      <h2>Reporting Issues</h2>
+      <p>Open an issue on the project repository with your Stream Deck version, AC EVO version, the car/session you tested, and what the local diagnostics endpoint reports at <code>http://127.0.0.1:8765/health</code>.</p>
+      <p><a href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">GitHub Issues</a></p>
+    </main>
+  </body>
+</html>
