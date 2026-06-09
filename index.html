@@ -33,7 +33,9 @@
 
       body {
         margin: 0;
-        background: linear-gradient(180deg, #0a0f16 0%, var(--bg) 44rem);
+        background:
+          linear-gradient(180deg, rgba(8, 14, 24, .96) 0%, var(--bg) 46rem),
+          #05070b;
         color: var(--text);
         font-family: Arial, sans-serif;
         line-height: 1.55;
@@ -85,6 +87,7 @@
       }
 
       .brand img {
+        border-radius: 8px;
         height: 36px;
         width: 36px;
       }
@@ -116,14 +119,12 @@
       }
 
       header {
-        padding: 72px 0 48px;
+        padding: 34px 0 46px;
       }
 
       .hero {
-        align-items: center;
         display: grid;
-        gap: 34px;
-        grid-template-columns: minmax(0, .85fr) minmax(420px, 1.15fr);
+        gap: 24px;
       }
 
       .eyebrow {
@@ -135,7 +136,7 @@
       }
 
       h1 {
-        font-size: clamp(42px, 7vw, 76px);
+        font-size: clamp(38px, 6vw, 68px);
         line-height: .95;
         margin: 0 0 18px;
         max-width: 760px;
@@ -152,7 +153,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 28px;
+        justify-content: flex-end;
       }
 
       .button {
@@ -174,20 +175,29 @@
         color: #041018;
       }
 
-      .preview {
+      .hero-copy {
+        align-items: end;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+
+      .hero-visual {
         margin: 0;
       }
 
-      .preview img {
+      .hero-visual img {
+        aspect-ratio: 2 / 1;
         border: 1px solid var(--line);
         border-radius: 8px;
-        box-shadow: 0 28px 70px rgba(0, 0, 0, .42);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, .54);
         display: block;
         height: auto;
+        object-fit: cover;
         width: 100%;
       }
 
-      .preview figcaption {
+      .hero-visual figcaption {
         color: var(--soft);
         font-size: 13px;
         margin-top: 10px;
@@ -263,6 +273,44 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .visual-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .visual-card {
+        margin: 0;
+      }
+
+      .visual-card img {
+        aspect-ratio: 2 / 1;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 18px 44px rgba(0, 0, 0, .35);
+        display: block;
+        height: auto;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .visual-card figcaption {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 10px;
+      }
+
+      .visual-card b {
+        color: var(--text);
+        display: block;
+        font-size: 15px;
+      }
+
+      .visual-card span {
+        display: block;
+        margin-top: 2px;
+      }
+
       .tile {
         background: linear-gradient(180deg, var(--panel-2), var(--panel));
         border: 1px solid var(--line);
@@ -316,8 +364,10 @@
 
       @media (max-width: 900px) {
         .hero,
+        .hero-copy,
         .grid,
-        .status-grid {
+        .status-grid,
+        .visual-grid {
           grid-template-columns: 1fr;
         }
 
@@ -339,8 +389,12 @@
           justify-content: flex-start;
         }
 
+        .hero-actions {
+          justify-content: flex-start;
+        }
+
         header {
-          padding-top: 42px;
+          padding-top: 24px;
         }
       }
     </style>
@@ -349,13 +403,14 @@
     <div class="topbar">
       <div class="wrap">
         <a class="brand" href="#top" aria-label="AC EVO Telemetry Plugin Support home">
-          <img src="assets/app-icon.png" alt="">
+          <img src="assets/plugin-icon.png" width="1254" height="1254" alt="">
           <span>
             <strong>AC EVO Telemetry Plugin</strong>
             <span>Unofficial Stream Deck support</span>
           </span>
         </a>
         <nav aria-label="Support navigation">
+          <a href="#gallery">Gallery</a>
           <a href="#setup">Setup</a>
           <a href="#troubleshooting">Troubleshooting</a>
           <a href="#controls">Controls</a>
@@ -367,20 +422,22 @@
 
     <header id="top">
       <div class="wrap hero">
-        <div>
-          <p class="eyebrow">Community plugin for sim racing telemetry</p>
-          <h1>AC EVO Telemetry Plugin Support</h1>
-          <p class="lead">Support, setup, and troubleshooting for an unofficial Stream Deck plugin that reads AC EVO shared-memory telemetry locally on Windows.</p>
+        <figure class="hero-visual">
+          <img src="assets/thumbnail.png" width="1774" height="887" fetchpriority="high" decoding="async" alt="AC EVO Telemetry Plugin marketplace artwork showing live Stream Deck telemetry and controls.">
+          <figcaption>Final Marketplace artwork for AC EVO Telemetry Plugin.</figcaption>
+        </figure>
+        <div class="hero-copy">
+          <div>
+            <p class="eyebrow">Community plugin for sim racing telemetry</p>
+            <h1>Support for AC EVO Telemetry Plugin</h1>
+            <p class="lead">Setup, troubleshooting, privacy, and issue reporting for the unofficial Stream Deck plugin that reads AC EVO shared-memory telemetry locally on Windows.</p>
+          </div>
           <div class="hero-actions">
             <a class="button primary" href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">Open an Issue</a>
             <a class="button" href="#privacy">Privacy Details</a>
             <a class="button" href="#setup">Setup Checklist</a>
           </div>
         </div>
-        <figure class="preview">
-          <img src="assets/support-preview.png" alt="Preview of Stream Deck keys showing lap timing, speed, gear, tire temperatures, brakes, and control buttons.">
-          <figcaption>Preview artwork generated from the plugin's own Stream Deck key renderer.</figcaption>
-        </figure>
       </div>
     </header>
 
@@ -406,6 +463,36 @@
     </div>
 
     <main class="wrap">
+      <section id="gallery">
+        <div class="section-head">
+          <h2>Product Visuals</h2>
+          <p>Reference images for the Marketplace listing, support docs, and quick visual orientation.</p>
+        </div>
+        <div class="visual-grid">
+          <figure class="visual-card">
+            <img src="assets/gallery1.png" width="1774" height="887" loading="lazy" decoding="async" alt="Three-stage telemetry artwork showing pre-session, live session, and high-temperature warning states.">
+            <figcaption>
+              <b>Session states</b>
+              <span>Pre-session checks, live telemetry, and temperature alerts.</span>
+            </figcaption>
+          </figure>
+          <figure class="visual-card">
+            <img src="assets/gallery2.png" width="1774" height="887" loading="lazy" decoding="async" alt="Stream Deck artwork showing controls, temperatures, speed, gear, brakes, water, lights, pit limiter, and indicators.">
+            <figcaption>
+              <b>Controls and telemetry</b>
+              <span>Readable key faces for driving data and button states.</span>
+            </figcaption>
+          </figure>
+          <figure class="visual-card">
+            <img src="assets/gallery3.png" width="1774" height="887" loading="lazy" decoding="async" alt="Stream Deck artwork showing tire temperatures, lap time, fuel, ignition, starter, and pit controls.">
+            <figcaption>
+              <b>Race dashboard</b>
+              <span>Live tire temperatures, lap and fuel tracking, and system controls.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section id="setup">
         <div class="section-head">
           <h2>Setup Checklist</h2>
