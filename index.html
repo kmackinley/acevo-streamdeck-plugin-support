@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EVO Telemetry Plugin Support</title>
-    <meta name="description" content="Support, setup, privacy, and troubleshooting for EVO Telemetry Plugin, an unofficial Stream Deck plugin for Assetto Corsa EVO.">
+    <meta name="description" content="Support, setup, privacy, and troubleshooting for EVO Telemetry Plugin, an unofficial Stream Deck plugin for AC EVO (Assetto Corsa EVO).">
     <style>
       :root {
         color-scheme: dark;
@@ -370,7 +370,7 @@
         <div>
           <p class="eyebrow">Community plugin for sim racing telemetry</p>
           <h1>EVO Telemetry Plugin Support</h1>
-          <p class="lead">Support, setup, and troubleshooting for an unofficial Stream Deck plugin that reads Assetto Corsa EVO shared-memory telemetry locally on Windows.</p>
+          <p class="lead">Support, setup, and troubleshooting for an unofficial Stream Deck plugin that reads AC EVO shared-memory telemetry locally on Windows.</p>
           <div class="hero-actions">
             <a class="button primary" href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues">Open an Issue</a>
             <a class="button" href="#privacy">Privacy Details</a>
@@ -414,7 +414,7 @@
         <div class="grid">
           <div class="tile">
             <h3>Requirements</h3>
-            <p>Windows 10 or newer, Stream Deck 6.5 or newer, and Assetto Corsa EVO running with native shared memory available.</p>
+            <p>Windows 10 or newer, Stream Deck 6.5 or newer, and AC EVO running with native shared memory available.</p>
           </div>
           <div class="tile">
             <h3>Telemetry Keys</h3>
@@ -422,7 +422,7 @@
           </div>
           <div class="tile">
             <h3>Control Buttons</h3>
-            <p>Set the same keyboard binding in Assetto Corsa EVO and in the action's Stream Deck property inspector.</p>
+            <p>Set the same keyboard binding in AC EVO and in the action's Stream Deck property inspector.</p>
           </div>
         </div>
       </section>
@@ -436,7 +436,7 @@
           <div class="tile wide">
             <h3>Quick Checks</h3>
             <ol>
-              <li>Start Assetto Corsa EVO and load into a driving session.</li>
+              <li>Start AC EVO and load into a driving session.</li>
               <li>Restart Stream Deck if keys show <code>STALE</code> after the sim is already running.</li>
               <li>Open <code>http://127.0.0.1:8765/health</code> on the same PC and confirm the diagnostics service reports healthy.</li>
               <li>Open <code>http://127.0.0.1:8765/telemetry</code> and confirm values change while driving.</li>
@@ -478,7 +478,7 @@
         <div class="grid">
           <div class="tile privacy wide">
             <h3>Local-Only Data</h3>
-            <p>The plugin reads Assetto Corsa EVO telemetry locally from shared memory and exposes diagnostics on <code>127.0.0.1</code>. It does not send driving telemetry, settings, or personal data to external servers.</p>
+            <p>The plugin reads AC EVO telemetry locally from shared memory and exposes diagnostics on <code>127.0.0.1</code>. It does not send driving telemetry, settings, or personal data to external servers.</p>
           </div>
           <div class="tile">
             <h3>Support Data</h3>
@@ -497,7 +497,7 @@
             <h3>Include This</h3>
             <ul>
               <li>Stream Deck version and Windows version.</li>
-              <li>Assetto Corsa EVO version, car, track, and session type.</li>
+              <li>AC EVO version, car, track, and session type.</li>
               <li>Which Stream Deck action is wrong and what the game showed at the same time.</li>
               <li>Output from <code>http://127.0.0.1:8765/health</code> and, if useful, the changing field from <code>/telemetry</code>.</li>
             </ul>
