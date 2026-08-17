@@ -27,6 +27,16 @@
         box-sizing: border-box;
       }
 
+      .visually-hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+
       html {
         scroll-behavior: smooth;
       }
@@ -114,6 +124,11 @@
         display: flex;
         gap: 22px;
         justify-content: flex-end;
+        scrollbar-width: none;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
       }
 
       nav a {
@@ -129,21 +144,42 @@
       }
 
       .masthead {
-        background-image: url("assets/racing-background.png?v=20260817b");
-        background-position: center;
-        background-size: cover;
+        background: #03050a;
         border-bottom: 1px solid var(--line);
-        isolation: isolate;
-        min-height: 548px;
-        position: relative;
       }
 
-      .masthead::before {
-        background: rgba(4, 6, 10, .78);
-        content: "";
-        inset: 0;
-        position: absolute;
-        z-index: -1;
+      .hero-art {
+        display: block;
+        height: auto;
+        margin: 0 auto;
+        width: min(1280px, 100%);
+      }
+
+      .hero-support-band {
+        background: rgba(9, 13, 19, .98);
+        border-top: 1px solid var(--line);
+      }
+
+      .hero-support-inner {
+        align-items: center;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) auto;
+        min-height: 84px;
+        padding-bottom: 14px;
+        padding-top: 14px;
+      }
+
+      .hero-support-copy {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .hero-support-copy strong {
+        color: var(--text);
+        display: block;
+        font-size: 16px;
+        margin-bottom: 2px;
       }
 
       .masthead-grid {
@@ -499,6 +535,54 @@
         margin-top: 30px;
       }
 
+      .gallery-grid {
+        display: grid;
+        gap: 26px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-item {
+        margin: 0;
+        min-width: 0;
+      }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .gallery-item img {
+        border: 1px solid var(--line-bright);
+        border-radius: 7px;
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+
+      .gallery-item figcaption {
+        display: grid;
+        gap: 4px;
+        grid-template-columns: auto 1fr;
+        padding: 12px 2px 0;
+      }
+
+      .gallery-item figcaption b {
+        font-size: 15px;
+      }
+
+      .gallery-item figcaption p {
+        color: var(--muted);
+        font-size: 13px;
+        grid-column: 2;
+        margin: 0;
+      }
+
+      .configuration-heading {
+        border-top: 1px solid var(--line);
+        font-size: 20px;
+        margin: 42px 0 0;
+        padding-top: 24px;
+      }
+
       .setting-card {
         margin: 0;
         min-width: 0;
@@ -762,12 +846,26 @@
         .section-heading,
         .quick-layout,
         .showcase-main,
+        .gallery-grid,
         .settings-grid,
         .help-grid,
         .privacy-layout,
         .privacy-copy,
-        .issue-strip {
+        .issue-strip,
+        .hero-support-inner {
           grid-template-columns: 1fr;
+        }
+
+        .hero-support-inner {
+          gap: 10px;
+        }
+
+        .hero-support-inner .actions {
+          margin-top: 0;
+        }
+
+        .gallery-item:first-child {
+          grid-column: auto;
         }
 
         .summary-item,
@@ -849,32 +947,14 @@
     </div>
 
     <header class="masthead" id="top">
-      <div class="wrap masthead-grid">
-        <div class="masthead-copy">
-          <p class="support-label">Support Center</p>
-          <h1><span>AC <em class="evo">EVO</em></span><span class="plugin-line">Telemetry Plugin</span></h1>
-          <p>Native Assetto Corsa EVO telemetry, live temperatures, timing, and race controls on Stream Deck.</p>
+      <h1 class="visually-hidden">AC EVO Telemetry Plugin Support</h1>
+      <img class="hero-art" src="assets/marketplace-thumbnail.png?v=20260817d" width="1920" height="960" alt="AC EVO Telemetry Plugin showing live telemetry and controls on a 4 by 3 programmable-key layout">
+      <div class="hero-support-band">
+        <div class="wrap hero-support-inner">
+          <p class="hero-support-copy"><strong>Support Center</strong>Setup, diagnostics, privacy, and issue reporting for the unofficial community plugin.</p>
           <div class="actions">
             <a class="button primary" href="#setup">Setup Guide</a>
             <a class="button secondary" href="https://github.com/kmackinley/acevo-streamdeck-plugin-support/issues/">Report Issue</a>
-          </div>
-          <div class="requirements" aria-label="Requirements">
-            <span>Windows 10+</span>
-            <span>Stream Deck 6.9+</span>
-            <span>Local shared memory</span>
-          </div>
-        </div>
-
-        <div class="capture-shell" aria-label="Actual AC EVO 4 by 3 key page">
-          <div class="capture-bar">
-            <span>AC EVO / Page 1</span>
-            <span class="live">Live Key Layout</span>
-          </div>
-          <div class="dashboard-crop">
-            <svg viewBox="62 124 360 270" role="img" aria-labelledby="hero-key-grid-title" preserveAspectRatio="xMidYMid meet">
-              <title id="hero-key-grid-title">Actual 4 by 3 AC EVO key page showing tires, speed, timing, position, lights, ignition, starter, and pit limiter</title>
-              <image href="assets/live-dashboard.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
-            </svg>
           </div>
         </div>
       </div>
@@ -951,24 +1031,38 @@
 
       <section class="wrap" id="plugin-views">
         <div class="section-heading">
-          <h2>Actual Plugin Views</h2>
-          <p>Direct captures from the working plugin, focused on the 4x3 AC EVO key page instead of the surrounding Stream Deck editor.</p>
+          <h2>Product Views</h2>
+          <p>Generated product renders based on the shipped 4x3 key-face system, followed by direct captures of the real per-key configuration.</p>
         </div>
 
-        <figure class="showcase-main">
-          <div class="showcase-media">
-            <svg viewBox="62 124 360 270" role="img" aria-labelledby="showcase-key-grid-title" preserveAspectRatio="xMidYMid meet">
-              <title id="showcase-key-grid-title">Actual 4 by 3 AC EVO key page with tire temperature, timing, position, lights, ignition, starter, and pit keys</title>
-              <image href="assets/live-dashboard.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
-            </svg>
-          </div>
-          <figcaption>
-            <span class="caption-index">VIEW 01</span>
-            <h3>A readable race page</h3>
-            <p>Separate front-left, front-right, rear-left, and rear-right temperatures sit beside timing, position, car state, lights, and controls.</p>
-          </figcaption>
-        </figure>
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="assets/gallery-live-dashboard.png?v=20260817e" width="1920" height="960" alt="Live AC EVO race dashboard product render with timing, temperatures, position, lights, and controls">
+            <figcaption>
+              <span class="caption-index">VIEW 01</span>
+              <b>Live race dashboard</b>
+              <p>Timing, temperatures, position, lights, and controls use the same key-face hierarchy shipped in the plugin.</p>
+            </figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/gallery-thermal.png?v=20260817e" width="1920" height="960" alt="Thermal awareness product render showing tire, brake, fluid, and ambient temperatures in Fahrenheit">
+            <figcaption>
+              <span class="caption-index">VIEW 02</span>
+              <b>Thermal awareness</b>
+              <p>Temperature values stay numeric while the outline color moves through the appropriate thermal gradient.</p>
+            </figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/gallery-controls.png?v=20260817e" width="1920" height="960" alt="Live AC EVO controls and states product render with ignition, starter, pit limiter, lights, and indicators">
+            <figcaption>
+              <span class="caption-index">VIEW 03</span>
+              <b>Controls + states</b>
+              <p>Ignition, hold-to-start, pit limiter, lights, and blinking indicators remain distinct at a glance.</p>
+            </figcaption>
+          </figure>
+        </div>
 
+        <h3 class="configuration-heading">Per-key configuration</h3>
         <div class="settings-grid">
           <figure class="setting-card">
             <svg viewBox="32 470 510 300" role="img" aria-labelledby="telemetry-settings-title" preserveAspectRatio="xMidYMid meet">
