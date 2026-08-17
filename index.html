@@ -281,15 +281,14 @@
       }
 
       .dashboard-crop {
-        height: 430px;
+        aspect-ratio: 4 / 3;
+        background: #111820;
         overflow: hidden;
       }
 
-      .dashboard-crop img {
+      .dashboard-crop svg {
         display: block;
         height: 100%;
-        object-fit: cover;
-        object-position: top;
         width: 100%;
       }
 
@@ -463,7 +462,8 @@
         overflow: hidden;
       }
 
-      .showcase-media img {
+      .showcase-media img,
+      .showcase-media svg {
         display: block;
         height: auto;
         width: 100%;
@@ -504,7 +504,8 @@
         min-width: 0;
       }
 
-      .setting-card img {
+      .setting-card img,
+      .setting-card svg {
         border: 1px solid var(--line-bright);
         border-radius: 7px;
         display: block;
@@ -686,10 +687,6 @@
           font-size: 34px;
         }
 
-        .dashboard-crop {
-          height: 360px;
-        }
-
         .summary-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -759,15 +756,6 @@
 
         .requirements {
           margin-top: 16px;
-        }
-
-        .dashboard-crop {
-          height: 210px;
-        }
-
-        .dashboard-crop img {
-          height: 100%;
-          object-fit: cover;
         }
 
         .summary-grid,
@@ -877,13 +865,16 @@
           </div>
         </div>
 
-        <div class="capture-shell" aria-label="Actual Stream Deck plugin view">
+        <div class="capture-shell" aria-label="Actual AC EVO 4 by 3 key page">
           <div class="capture-bar">
-            <span>Page 1 / Default Profile</span>
-            <span class="live">Actual Plugin View</span>
+            <span>AC EVO / Page 1</span>
+            <span class="live">Live Key Layout</span>
           </div>
           <div class="dashboard-crop">
-            <img src="assets/live-dashboard.png?v=20260817b" width="852" height="772" fetchpriority="high" decoding="async" alt="Actual Stream Deck application showing AC EVO telemetry keys for tires, speed, timing, position, lights, ignition, starter, and pit limiter.">
+            <svg viewBox="62 124 360 270" role="img" aria-labelledby="hero-key-grid-title" preserveAspectRatio="xMidYMid meet">
+              <title id="hero-key-grid-title">Actual 4 by 3 AC EVO key page showing tires, speed, timing, position, lights, ignition, starter, and pit limiter</title>
+              <image href="assets/live-dashboard.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
+            </svg>
           </div>
         </div>
       </div>
@@ -961,12 +952,15 @@
       <section class="wrap" id="plugin-views">
         <div class="section-heading">
           <h2>Actual Plugin Views</h2>
-          <p>These are direct captures from the working Stream Deck plugin, shown at a size that keeps the UI sharp and readable.</p>
+          <p>Direct captures from the working plugin, focused on the 4x3 AC EVO key page instead of the surrounding Stream Deck editor.</p>
         </div>
 
         <figure class="showcase-main">
           <div class="showcase-media">
-            <img src="assets/live-dashboard.png?v=20260817b" width="852" height="772" loading="lazy" decoding="async" alt="Actual Stream Deck page with separate tire temperature, timing, position, lights, ignition, starter, and pit keys.">
+            <svg viewBox="62 124 360 270" role="img" aria-labelledby="showcase-key-grid-title" preserveAspectRatio="xMidYMid meet">
+              <title id="showcase-key-grid-title">Actual 4 by 3 AC EVO key page with tire temperature, timing, position, lights, ignition, starter, and pit keys</title>
+              <image href="assets/live-dashboard.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
+            </svg>
           </div>
           <figcaption>
             <span class="caption-index">VIEW 01</span>
@@ -977,21 +971,30 @@
 
         <div class="settings-grid">
           <figure class="setting-card">
-            <img src="assets/telemetry-settings.png?v=20260817b" width="852" height="772" loading="lazy" decoding="async" alt="Telemetry property inspector selecting front-left tire temperature and Fahrenheit.">
+            <svg viewBox="32 470 510 300" role="img" aria-labelledby="telemetry-settings-title" preserveAspectRatio="xMidYMid meet">
+              <title id="telemetry-settings-title">Telemetry property inspector selecting front-left tire temperature and Fahrenheit</title>
+              <image href="assets/telemetry-settings.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
+            </svg>
             <figcaption>
               <b>Telemetry + Units</b>
               <p>Choose the field and display unit for each key.</p>
             </figcaption>
           </figure>
           <figure class="setting-card">
-            <img src="assets/lights-settings.png?v=20260817b" width="852" height="772" loading="lazy" decoding="async" alt="Lights property inspector showing the light-cycle keyboard binding.">
+            <svg viewBox="32 470 510 300" role="img" aria-labelledby="lights-settings-title" preserveAspectRatio="xMidYMid meet">
+              <title id="lights-settings-title">Lights property inspector showing the light-cycle keyboard binding</title>
+              <image href="assets/lights-settings.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
+            </svg>
             <figcaption>
               <b>Lights</b>
               <p>Cycle EVO light modes while live indicators keep blinking.</p>
             </figcaption>
           </figure>
           <figure class="setting-card">
-            <img src="assets/control-settings.png?v=20260817b" width="852" height="772" loading="lazy" decoding="async" alt="Control Button property inspector selecting headlights and keyboard key L.">
+            <svg viewBox="32 470 510 300" role="img" aria-labelledby="control-settings-title" preserveAspectRatio="xMidYMid meet">
+              <title id="control-settings-title">Control Button property inspector selecting headlights and keyboard key L</title>
+              <image href="assets/control-settings.png?v=20260817c" x="0" y="0" width="852" height="772"></image>
+            </svg>
             <figcaption>
               <b>Control Button</b>
               <p>Select a command and match its in-game key binding.</p>
